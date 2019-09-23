@@ -1,4 +1,4 @@
-package com.mytaxi.jooqoverpostgres;
+package com.freenow.jooqoverpostgres;
 
 import java.nio.file.Paths;
 import java.sql.Connection;

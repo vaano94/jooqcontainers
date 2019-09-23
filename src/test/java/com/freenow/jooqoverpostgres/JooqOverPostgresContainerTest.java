@@ -1,4 +1,4 @@
-package com.mytaxi.jooqoverpostgres;
+package com.freenow.jooqoverpostgres;
 
 import java.io.File;
 import org.apache.maven.plugin.testing.MojoRule;

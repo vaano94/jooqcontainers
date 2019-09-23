@@ -2,14 +2,14 @@
 
 Maven plugin which can be integrated to any maven project
 Sample :   
-```   
+```xml
 <plugin>  
-    <groupId>com.mytaxi</groupId>  
+    <groupId>com.freenow</groupId>  
      <artifactId>jooqgen-liquibase-postgres</artifactId>
     <configuration>
-        <schema>bookingoptionsservice</schema> <-- schema name -->
-        <packageName>com.mytaxi.bookingoptionsservice</packageName> <-- package to be created for generated classes -->
-        <liquibaseChangeLogFile>${liquibase.changeLogFile}</liquibaseChangeLogFile> 
+        <schema>public</schema> <!-- schema name -->
+        <packageName>com.example.yourpackage</packageName> <!-- generated classes target package -->
+        <liquibaseChangeLogFile>${project.basedir}/src/main/resources/liquibase/changelog.xml</liquibaseChangeLogFile> 
     </configuration>
     <executions>
          <execution>
