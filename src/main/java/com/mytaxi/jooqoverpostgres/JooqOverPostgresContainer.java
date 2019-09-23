@@ -21,7 +21,6 @@ import org.jooq.meta.jaxb.Generate;
 import org.jooq.meta.jaxb.Generator;
 import org.jooq.meta.jaxb.Jdbc;
 import org.jooq.meta.jaxb.Target;
-import org.junit.ClassRule;
 import org.testcontainers.containers.PostgreSQLContainer;
 
 @Mojo(name = "jooqOverPostgresContainer")
@@ -29,7 +28,7 @@ public class JooqOverPostgresContainer extends AbstractMojo
 {
 
     public static final String TARGET_GENERATED_SOURCES_JOOQ = "target/generated-sources/jooq/";
-    @ClassRule
+
     public static PostgreSQLContainer postgreSQLContainer = new PostgreSQLContainer("postgres:alpine");
 
     @Parameter(property = "jooqOverPostgresContainer.packageName", required = true)
