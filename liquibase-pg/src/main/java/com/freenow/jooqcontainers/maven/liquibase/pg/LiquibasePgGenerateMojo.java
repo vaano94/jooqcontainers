@@ -23,8 +23,8 @@ public class LiquibasePgGenerateMojo extends AbstractMojo
     @Parameter(property = "generate.testcontainers", required = true)
     private Map<String, Object> testcontainers;
 
-    @Parameter(property = "generate.databaseType", defaultValue = "POSTGRES", required = false)
-    private DatabaseType databaseType;
+    @Parameter(property = "generate.databaseName", defaultValue = "postgresql", required = false)
+    private String databaseName = "postgresql";
 
     @Parameter(property = "generate.databaseVersion", required = false)
     private String databaseVersion;
@@ -37,33 +37,29 @@ public class LiquibasePgGenerateMojo extends AbstractMojo
     public void execute()
     {
         String liquibaseChangeLogFile = (String) liquibase.get("changeLogFile");
-        String tcJdbcUrl = (String) testcontainers.get("jdbcUrl");
-        String tcDatabaseName = (String) testcontainers.get("databaseName");
-        String tcDatabaseVersion = (String) testcontainers.get("databaseVersion");
-
         LiquibaseGenerator.setJooqTargetDirectory(jooq, TARGET_GENERATED_SOURCES_JOOQ);
-
         LiquibaseGenerator generator;
 
         if (databaseVersion != null)
         {
-            generator = new LiquibaseGenerator(databaseType.name().toLowerCase(), databaseVersion, jooq, liquibaseChangeLogFile);
-        }
-        else if (tcJdbcUrl != null)
-        {
-            generator = new LiquibaseGenerator(tcJdbcUrl, jooq, liquibaseChangeLogFile);
+            generator = new LiquibaseGenerator(databaseName, databaseVersion, jooq, liquibaseChangeLogFile);
         }
         else
         {
-            generator = new LiquibaseGenerator(tcDatabaseName, tcDatabaseVersion, jooq, liquibaseChangeLogFile);
+            String tcJdbcUrl = (String) testcontainers.get("jdbcUrl");
+            String tcDatabaseName = (String) testcontainers.get("databaseName");
+            String tcDatabaseVersion = (String) testcontainers.get("databaseVersion");
+
+            if (tcJdbcUrl != null)
+            {
+                generator = new LiquibaseGenerator(tcJdbcUrl, jooq, liquibaseChangeLogFile);
+            }
+            else
+            {
+                generator = new LiquibaseGenerator(tcDatabaseName, tcDatabaseVersion, jooq, liquibaseChangeLogFile);
+            }
         }
 
         generator.generate();
-    }
-
-
-    public enum DatabaseType
-    {
-        POSTGRES, POSTGIS
     }
 }

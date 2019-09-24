@@ -18,6 +18,7 @@
                             </target>
                             <database>
                                 <inputSchema>public</inputSchema>
+                                <includes>passenger</includes>
                             </database>
                             <generate>
                                 <records>true</records>
@@ -28,10 +29,11 @@
                     </jooq>
 
                     <liquibase>
-                        <changeLogFile>src/test/resources/simple-postgres-changelog.xml</changeLogFile>
+                        <changeLogFile>src/test/resources/simple-postgis-changelog.xml</changeLogFile>
                     </liquibase>
 
-                    <databaseVersion>10</databaseVersion>
+                    <databaseName>postgis</databaseName>
+                    <databaseVersion>9.6</databaseVersion>
                 </configuration>
             </plugin>
         </plugins>

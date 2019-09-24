@@ -9,7 +9,7 @@
         <plugins>
             <plugin>
                 <groupId>com.freenow.jooqcontainers</groupId>
-                <artifactId>jooqcontainers-liquibase-pg-maven</artifactId>
+                <artifactId>jooqcontainers-liquibase-maven</artifactId>
                 <configuration>
                     <jooq>
                         <generator>
@@ -17,7 +17,7 @@
                                 <packageName>com.freenow.example</packageName>
                             </target>
                             <database>
-                                <inputSchema>public</inputSchema>
+                                <inputSchema>test</inputSchema>
                             </database>
                             <generate>
                                 <records>true</records>
@@ -28,10 +28,13 @@
                     </jooq>
 
                     <liquibase>
-                        <changeLogFile>src/test/resources/simple-postgres-changelog.xml</changeLogFile>
+                        <changeLogFile>src/test/resources/simple-mysql-changelog.xml</changeLogFile>
                     </liquibase>
 
-                    <databaseVersion>10</databaseVersion>
+                    <testcontainers>
+                        <databaseName>mysql</databaseName>
+                        <databaseVersion>5.6</databaseVersion>
+                    </testcontainers>
                 </configuration>
             </plugin>
         </plugins>

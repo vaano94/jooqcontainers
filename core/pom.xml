@@ -16,27 +16,23 @@
         <dependency>
             <groupId>org.jooq</groupId>
             <artifactId>jooq-codegen</artifactId>
-            <version>3.11.11</version>
         </dependency>
 
         <!-- Testcontainers -->
         <dependency>
             <groupId>org.testcontainers</groupId>
             <artifactId>jdbc</artifactId>
-            <version>1.11.4</version>
         </dependency>
         <dependency>
             <!-- JUnit is a compile-level dependency of Testcontainers -->
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.11</version>
         </dependency>
 
         <!-- Liquibase -->
         <dependency>
             <groupId>org.liquibase</groupId>
             <artifactId>liquibase-core</artifactId>
-            <version>3.6.3</version>
             <optional>true</optional>
         </dependency>
 
@@ -44,13 +40,11 @@
         <dependency>
             <groupId>org.testcontainers</groupId>
             <artifactId>postgresql</artifactId>
-            <version>1.11.4</version>
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>postgresql</groupId>
+            <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
-            <version>9.1-901-1.jdbc4</version>
             <scope>test</scope>
         </dependency>
 

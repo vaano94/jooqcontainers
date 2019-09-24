@@ -17,12 +17,7 @@
                                 <packageName>com.freenow.example</packageName>
                             </target>
                             <database>
-                                <schemata>
-                                    <schema>
-                                        <inputSchema>public</inputSchema>
-                                        <outputSchemaToDefault>true</outputSchemaToDefault>
-                                    </schema>
-                                </schemata>
+                                <inputSchema>public</inputSchema>
                             </database>
                             <generate>
                                 <records>true</records>
