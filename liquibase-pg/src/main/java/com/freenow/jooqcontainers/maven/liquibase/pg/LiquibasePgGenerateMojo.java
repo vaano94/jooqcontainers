@@ -40,6 +40,8 @@ public class LiquibasePgGenerateMojo extends AbstractMojo
         LiquibaseGenerator.setJooqTargetDirectory(jooq, TARGET_GENERATED_SOURCES_JOOQ);
         LiquibaseGenerator generator;
 
+        project.addCompileSourceRoot(TARGET_GENERATED_SOURCES_JOOQ);
+
         if (databaseVersion != null)
         {
             generator = new LiquibaseGenerator(databaseName, databaseVersion, jooq, liquibaseChangeLogFile);

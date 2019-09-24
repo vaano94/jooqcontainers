@@ -37,6 +37,8 @@ public class LiquibaseGenerateMojo extends AbstractMojo
 
         LiquibaseGenerator.setJooqTargetDirectory(jooq, TARGET_GENERATED_SOURCES_JOOQ);
 
+        project.addCompileSourceRoot(TARGET_GENERATED_SOURCES_JOOQ);
+
         LiquibaseGenerator generator;
 
         if (tcJdbcUrl != null)
