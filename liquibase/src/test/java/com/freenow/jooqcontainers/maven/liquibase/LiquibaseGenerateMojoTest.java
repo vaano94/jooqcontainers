@@ -1,4 +1,4 @@
-package com.freenow.jooqoverpostgres;
+package com.freenow.jooqcontainers.maven.liquibase;
 
 import java.io.File;
 import org.apache.maven.plugin.testing.MojoRule;
@@ -8,17 +8,18 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertTrue;
 
-public class JooqOverPostgresContainerTest
+public class LiquibaseGenerateMojoTest
 {
     @Rule
     public MojoRule rule = new MojoRule();
+
 
     @Test
     public void runPlugin() throws Exception
     {
         // GIVEN
-        JooqOverPostgresContainer container = (JooqOverPostgresContainer) rule.lookupMojo(
-            "jooqOverPostgresContainer", new File("src/test/resources/simple-postgres-pom.xml")
+        LiquibaseGenerateMojo container = (LiquibaseGenerateMojo) rule.lookupMojo(
+            "generate", new File("src/test/resources/simple-postgres-pom.xml")
         );
 
         rule.setVariableValueToObject(container, "project", new MavenProjectStub());
@@ -27,7 +28,7 @@ public class JooqOverPostgresContainerTest
         container.execute();
 
         // THEN
-        File generatedSource = new File("target/generated-sources/jooq/com/mytaxi/bookingoptionsservice/tables/pojos/Passenger.java");
+        File generatedSource = new File("target/generated-sources/jooq/com/freenow/example/tables/pojos/Passenger.java");
         assertTrue(generatedSource.exists());
     }
 }

@@ -1,10 +1,12 @@
-# What is this
+# JOOQ Containers
+
+JOOQ Codegen + Testcontainers = JOOQ Containers
 
 Maven plugin which can be integrated to any maven project
 Sample :   
 ```xml
 <plugin>  
-    <groupId>com.freenow</groupId>  
+    <groupId>com.freenow.jooqcontainers</groupId>  
      <artifactId>jooqgen-liquibase-postgres</artifactId>
     <configuration>
         <schema>public</schema> <!-- schema name -->
