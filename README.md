@@ -8,7 +8,7 @@ JOOQ Codegen + Testcontainers = JOOQ Containers
 
 ```xml
 <plugin>
-    <groupId>com.freenow.jooqcontainers</groupId>
+    <groupId>com.free-now.jooqcontainers</groupId>
     <artifactId>jooqcontainers-liquibase-pg-maven</artifactId>
     <version>1.0.0</version>
     <configuration>
@@ -47,7 +47,7 @@ JOOQ Codegen + Testcontainers = JOOQ Containers
 **Postgis**
 ```xml
 <plugin>
-    <groupId>com.freenow.jooqcontainers</groupId>
+    <groupId>com.free-now.jooqcontainers</groupId>
     <artifactId>jooqcontainers-liquibase-pg-maven</artifactId>
     <version>1.0.0</version>
     <configuration>
@@ -88,7 +88,7 @@ JOOQ Codegen + Testcontainers = JOOQ Containers
 **Custom database configuration**
 ```xml
 <plugin>
-    <groupId>com.freenow.jooqcontainers</groupId>
+    <groupId>com.free-now.jooqcontainers</groupId>
     <artifactId>jooqcontainers-liquibase-maven</artifactId>
     <version>1.0.0</version>
     <configuration>

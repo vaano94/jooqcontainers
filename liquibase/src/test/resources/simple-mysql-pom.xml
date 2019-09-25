@@ -8,7 +8,7 @@
     <build>
         <plugins>
             <plugin>
-                <groupId>com.freenow.jooqcontainers</groupId>
+                <groupId>com.free-now.jooqcontainers</groupId>
                 <artifactId>jooqcontainers-liquibase-maven</artifactId>
                 <configuration>
                     <jooq>
