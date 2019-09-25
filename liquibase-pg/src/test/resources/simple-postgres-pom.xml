@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>jooqgen-liquibase-test-project</artifactId>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.freenow.jooqcontainers</groupId>
+                <artifactId>jooqcontainers-liquibase-pg-maven</artifactId>
+                <configuration>
+                    <jooq>
+                        <generator>
+                            <target>
+                                <packageName>com.freenow.example</packageName>
+                            </target>
+                            <database>
+                                <inputSchema>public</inputSchema>
+                            </database>
+                            <generate>
+                                <records>true</records>
+                                <pojos>true</pojos>
+                                <daos>true</daos>
+                            </generate>
+                        </generator>
+                    </jooq>
+
+                    <liquibase>
+                        <changeLogFile>src/test/resources/simple-postgres-changelog.xml</changeLogFile>
+                    </liquibase>
+
+                    <databaseVersion>10</databaseVersion>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
