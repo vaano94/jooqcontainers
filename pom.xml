@@ -21,14 +21,11 @@
         <java.version>1.8</java.version>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <scm.url>scm:git:ssh://git@github.com:freenowtech/jooqcontainers.git</scm.url>
     </properties>
 
     <scm>
         <tag>HEAD</tag>
-        <url>${scm.url}</url>
-        <connection>${scm.url}</connection>
-        <developerConnection>${scm.url}</developerConnection>
+        <connection>scm:git:ssh://git@github.com/freenowtech/jooqcontainers.git</connection>
     </scm>
 
     <dependencyManagement>
