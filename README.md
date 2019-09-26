@@ -23,7 +23,7 @@ JOOQ Codegen + Testcontainers = JOOQ Containers
                     <daos>true</daos>
                 </generate>
                 <target>
-                    <packageName>com.freenow.yourpackage</packageName>
+                    <packageName>com.example.yourpackage</packageName>
                 </target>
             </generator>
         </jooq>
@@ -63,7 +63,7 @@ JOOQ Codegen + Testcontainers = JOOQ Containers
                     <daos>true</daos>
                 </generate>
                 <target>
-                    <packageName>com.freenow.yourpackage</packageName>
+                    <packageName>com.example.yourpackage</packageName>
                 </target>
             </generator>
         </jooq>
@@ -104,7 +104,7 @@ JOOQ Codegen + Testcontainers = JOOQ Containers
                     <daos>true</daos>
                 </generate>
                 <target>
-                    <packageName>com.freenow.yourpackage</packageName>
+                    <packageName>com.example.yourpackage</packageName>
                 </target>
             </generator>
         </jooq>
