@@ -56,4 +56,24 @@ public class LiquibasePgGenerateMojoTest
         File generatedSource = new File("target/generated-sources/jooq/com/freenow/example/tables/pojos/Passenger.java");
         assertTrue(generatedSource.exists());
     }
+
+    @Test
+    public void runPluginPostgresWithParentChildLog() throws Exception
+    {
+        // GIVEN
+        LiquibasePgGenerateMojo container = (LiquibasePgGenerateMojo) rule.lookupMojo(
+                "generate", new File("src/test/resources/simple-postgres-parentchild-pom.xml")
+        );
+
+        rule.setVariableValueToObject(container, "project", new MavenProjectStub());
+
+        // WHEN
+        container.execute();
+
+        // THEN
+        File generatedPassengerSource = new File("target/generated-sources/jooq/com/freenow/example/tables/pojos/Passenger.java");
+        File generatedSeatSource = new File("target/generated-sources/jooq/com/freenow/example/tables/pojos/Seat.java");
+        assertTrue(generatedPassengerSource.exists());
+        assertTrue(generatedSeatSource.exists());
+    }
 }

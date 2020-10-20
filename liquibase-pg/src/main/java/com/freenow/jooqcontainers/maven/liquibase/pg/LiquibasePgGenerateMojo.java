@@ -37,14 +37,13 @@ public class LiquibasePgGenerateMojo extends AbstractMojo
     public void execute()
     {
         String liquibaseChangeLogFile = (String) liquibase.get("changeLogFile");
-        LiquibaseGenerator.setJooqTargetDirectory(jooq, TARGET_GENERATED_SOURCES_JOOQ);
         LiquibaseGenerator generator;
 
         project.addCompileSourceRoot(TARGET_GENERATED_SOURCES_JOOQ);
 
         if (databaseVersion != null)
         {
-            generator = new LiquibaseGenerator(databaseName, databaseVersion, jooq, liquibaseChangeLogFile);
+            generator = new LiquibaseGenerator(databaseName, databaseVersion, jooq, liquibaseChangeLogFile, TARGET_GENERATED_SOURCES_JOOQ);
         }
         else
         {
@@ -54,11 +53,11 @@ public class LiquibasePgGenerateMojo extends AbstractMojo
 
             if (tcJdbcUrl != null)
             {
-                generator = new LiquibaseGenerator(tcJdbcUrl, jooq, liquibaseChangeLogFile);
+                generator = new LiquibaseGenerator(tcJdbcUrl, jooq, liquibaseChangeLogFile, TARGET_GENERATED_SOURCES_JOOQ);
             }
             else
             {
-                generator = new LiquibaseGenerator(tcDatabaseName, tcDatabaseVersion, jooq, liquibaseChangeLogFile);
+                generator = new LiquibaseGenerator(tcDatabaseName, tcDatabaseVersion, jooq, liquibaseChangeLogFile, TARGET_GENERATED_SOURCES_JOOQ);
             }
         }
 

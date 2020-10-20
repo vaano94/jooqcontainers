@@ -10,7 +10,7 @@ JOOQ Codegen + Testcontainers = JOOQ Containers
 <plugin>
     <groupId>com.free-now.jooqcontainers</groupId>
     <artifactId>jooqcontainers-liquibase-pg-maven</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.2</version>
     <configuration>
         <jooq> <!-- Complete JOOQ configuration -->
             <generator>
@@ -32,7 +32,7 @@ JOOQ Codegen + Testcontainers = JOOQ Containers
             <changeLogFile>src/main/resources/liquibase/changelog.xml</changeLogFile>
         </liquibase>
 
-        <databaseVersion>9.6</databaseVersion>
+        <databaseVersion>11</databaseVersion>
     </configuration>
     <executions>
         <execution>
@@ -49,7 +49,7 @@ JOOQ Codegen + Testcontainers = JOOQ Containers
 <plugin>
     <groupId>com.free-now.jooqcontainers</groupId>
     <artifactId>jooqcontainers-liquibase-pg-maven</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.2</version>
     <configuration>
         <jooq> <!-- Complete JOOQ configuration -->
             <generator>
@@ -90,7 +90,7 @@ JOOQ Codegen + Testcontainers = JOOQ Containers
 <plugin>
     <groupId>com.free-now.jooqcontainers</groupId>
     <artifactId>jooqcontainers-liquibase-maven</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.2-SNAPSHOT</version>
     <configuration>
         <jooq> <!-- Complete JOOQ configuration -->
             <generator>

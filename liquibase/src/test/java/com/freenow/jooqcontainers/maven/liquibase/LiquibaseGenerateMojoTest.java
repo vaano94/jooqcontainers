@@ -38,22 +38,4 @@ public class LiquibaseGenerateMojoTest
         File generatedSource = new File("target/generated-sources/jooq/com/freenow/example/tables/pojos/Passenger.java");
         assertTrue(generatedSource.exists());
     }
-
-    @Test
-    public void runPluginMysql() throws Exception
-    {
-        // GIVEN
-        LiquibaseGenerateMojo container = (LiquibaseGenerateMojo) rule.lookupMojo(
-            "generate", new File("src/test/resources/simple-mysql-pom.xml")
-        );
-
-        rule.setVariableValueToObject(container, "project", new MavenProjectStub());
-
-        // WHEN
-        container.execute();
-
-        // THEN
-        File generatedSource = new File("target/generated-sources/jooq/com/freenow/example/tables/pojos/Passenger.java");
-        assertTrue(generatedSource.exists());
-    }
 }

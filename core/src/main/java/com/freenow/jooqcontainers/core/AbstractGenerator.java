@@ -16,19 +16,22 @@ public abstract class AbstractGenerator
 {
     private final String tcJdbcUrl;
     private final Configuration jooqConfig;
+    private final String targetDirectory;
 
 
-    public AbstractGenerator(String tcJdbcUrl, Configuration jooqConfig)
+    public AbstractGenerator(String tcJdbcUrl, Configuration jooqConfig, String targetDirectory)
     {
         this.tcJdbcUrl = tcJdbcUrl;
         this.jooqConfig = jooqConfig;
+        this.targetDirectory = targetDirectory;
     }
 
 
-    public AbstractGenerator(String tcDatabaseName, String tcDatabaseVersion, Configuration jooqConfig)
+    public AbstractGenerator(String tcDatabaseName, String tcDatabaseVersion, Configuration jooqConfig, String targetDirectory)
     {
         this.tcJdbcUrl = "jdbc:tc:" + tcDatabaseName + ":" + tcDatabaseVersion + "://localhost/test";
         this.jooqConfig = jooqConfig;
+        this.targetDirectory = targetDirectory;
     }
 
 
@@ -42,6 +45,7 @@ public abstract class AbstractGenerator
         try (Connection connection = getConnection())
         {
             runMigration(connection);
+            tuneJooqConfiguration();
             generateJooqClasses();
         }
         catch (Exception e)
@@ -56,8 +60,8 @@ public abstract class AbstractGenerator
     }
 
 
-    private void generateJooqClasses() throws Exception
-    {
+    private void tuneJooqConfiguration() {
+
         if (jooqConfig.getJdbc() == null)
         {
             jooqConfig.setJdbc(new Jdbc());
@@ -73,6 +77,11 @@ public abstract class AbstractGenerator
             jooqConfig.getGenerator().setTarget(new Target());
         }
 
+        if (jooqConfig.getGenerator().getGenerate() == null)
+        {
+            jooqConfig.getGenerator().setGenerate(new Generate());
+        }
+
         if (jooqConfig.getGenerator().getDatabase() == null)
         {
             jooqConfig.getGenerator().setDatabase(new org.jooq.meta.jaxb.Database());
@@ -83,14 +92,13 @@ public abstract class AbstractGenerator
             jooqConfig.getGenerator().getDatabase().setExcludes(getMigrationDefaultExcludes());
         }
 
-        if (jooqConfig.getGenerator().getGenerate() == null)
-        {
-            jooqConfig.getGenerator().setGenerate(new Generate());
-        }
-
         jooqConfig.getJdbc().setDriver(ContainerDatabaseDriver.class.getName());
         jooqConfig.getJdbc().setUrl(tcJdbcUrl);
+        jooqConfig.getGenerator().getTarget().setDirectory(Paths.get(targetDirectory).toAbsolutePath().toString());
+    }
 
+    private void generateJooqClasses() throws Exception
+    {
         GenerationTool.generate(jooqConfig);
     }
 
@@ -98,22 +106,6 @@ public abstract class AbstractGenerator
     private Connection getConnection() throws SQLException
     {
         return DriverManager.getConnection(tcJdbcUrl);
-    }
-
-
-    public static void setJooqTargetDirectory(Configuration jooqConfig, String targetDirectory)
-    {
-        if (jooqConfig.getGenerator() == null)
-        {
-            jooqConfig.setGenerator(new Generator());
-        }
-
-        if (jooqConfig.getGenerator().getTarget() == null)
-        {
-            jooqConfig.getGenerator().setTarget(new Target());
-        }
-
-        jooqConfig.getGenerator().getTarget().setDirectory(Paths.get(targetDirectory).toAbsolutePath().toString());
     }
 
 

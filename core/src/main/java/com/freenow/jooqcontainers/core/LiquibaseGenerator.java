@@ -16,16 +16,16 @@ public class LiquibaseGenerator extends AbstractGenerator
     private final String liquibaseChangeLogFile;
 
 
-    public LiquibaseGenerator(String tcJdbcUrl, Configuration jooqConfig, String liquibaseChangeLogFile)
+    public LiquibaseGenerator(String tcJdbcUrl, Configuration jooqConfig, String liquibaseChangeLogFile, String targetDirectory)
     {
-        super(tcJdbcUrl, jooqConfig);
+        super(tcJdbcUrl, jooqConfig, targetDirectory);
         this.liquibaseChangeLogFile = liquibaseChangeLogFile;
     }
 
 
-    public LiquibaseGenerator(String tcDatabaseName, String tcDatabaseVersion, Configuration jooqConfig, String liquibaseChangeLogFile)
+    public LiquibaseGenerator(String tcDatabaseName, String tcDatabaseVersion, Configuration jooqConfig, String liquibaseChangeLogFile, String targetDirectory)
     {
-        super(tcDatabaseName, tcDatabaseVersion, jooqConfig);
+        super(tcDatabaseName, tcDatabaseVersion, jooqConfig, targetDirectory);
         this.liquibaseChangeLogFile = liquibaseChangeLogFile;
     }
 

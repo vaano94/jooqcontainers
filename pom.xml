@@ -4,7 +4,7 @@
 
     <groupId>com.free-now.jooqcontainers</groupId>
     <artifactId>jooqcontainers-parent</artifactId>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>1.0.2</version>
     <packaging>pom</packaging>
 
     <modules>
@@ -20,17 +20,23 @@
         <java.version>1.8</java.version>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+        <testcontainers.version>1.14.3</testcontainers.version>
+        <jooq.codegen.version>3.13.5</jooq.codegen.version>
+        <postgres.version>42.2.18</postgres.version>
+        <liquibase.version>3.8.9</liquibase.version>
     </properties>
 
     <scm>
         <tag>HEAD</tag>
-        <connection>scm:git:ssh://git@github.com/freenowtech/jooqcontainers.git</connection>
+        <connection>scm:git:ssh://git@github.com/vaano94/jooqcontainers.git</connection>
     </scm>
+
 
     <distributionManagement>
         <repository>
-            <id>bintray-repo-free-now</id>
-            <url>https://api.bintray.com/maven/mytaxi/oss/jooqcontainers/;publish=1</url>
+            <id>bintray-vaano94-jooqcontainers</id>
+            <name>vaano94-jooqcontainers</name>
+            <url>https://api.bintray.com/maven/vaano94/jooqcontainers/bintray-vaano94-jooqcontainers;publish=1</url>
         </repository>
     </distributionManagement>
 
@@ -40,24 +46,24 @@
             <dependency>
                 <groupId>org.jooq</groupId>
                 <artifactId>jooq-codegen</artifactId>
-                <version>3.11.11</version>
+                <version>${jooq.codegen.version}</version>
             </dependency>
 
             <!-- Testcontainers -->
             <dependency>
                 <groupId>org.testcontainers</groupId>
                 <artifactId>jdbc</artifactId>
-                <version>1.11.4</version>
+                <version>${testcontainers.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.testcontainers</groupId>
                 <artifactId>postgresql</artifactId>
-                <version>1.11.4</version>
+                <version>${testcontainers.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.testcontainers</groupId>
                 <artifactId>mysql</artifactId>
-                <version>1.11.4</version>
+                <version>${testcontainers.version}</version>
             </dependency>
             <dependency>
                 <!-- JUnit is a compile-level dependency of Testcontainers -->
@@ -70,7 +76,7 @@
             <dependency>
                 <groupId>org.liquibase</groupId>
                 <artifactId>liquibase-core</artifactId>
-                <version>3.6.3</version>
+                <version>${liquibase.version}</version>
                 <optional>true</optional>
             </dependency>
 
@@ -78,14 +84,8 @@
             <dependency>
                 <groupId>org.postgresql</groupId>
                 <artifactId>postgresql</artifactId>
-                <version>42.2.8</version>
+                <version>${postgres.version}</version>
             </dependency>
-            <dependency>
-                <groupId>mysql</groupId>
-                <artifactId>mysql-connector-java</artifactId>
-                <version>8.0.17</version>
-            </dependency>
-
             <!-- Maven -->
             <dependency>
                 <groupId>org.apache.maven</groupId>
@@ -136,12 +136,12 @@
             <plugins>
                 <plugin>
                     <groupId>org.codehaus.plexus</groupId>
-                    <artifactId>plexus-maven-plugin</artifactId>
-                    <version>1.3.8</version>
+                    <artifactId>plexus-component-metadata</artifactId>
+                    <version>2.1.0</version>
                     <executions>
                         <execution>
                             <goals>
-                                <goal>descriptor</goal>
+                                <goal>generate-metadata</goal>
                             </goals>
                         </execution>
                     </executions>
@@ -206,6 +206,10 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
+                <configuration>
+                    <source>8</source>
+                    <detectJavaApiLink>false</detectJavaApiLink>
+                </configuration>
                 <executions>
                     <execution>
                         <id>attach-javadocs</id>
